@@ -57,9 +57,12 @@ class CommandLine
      */
     public static function parseArgs($argv = null)
     {
-        $argv                           = $argv ? $argv : $_SERVER['argv'];
+        if (is_string($argv))
+            $argv = explode(' ', $argv);
+
+        $argv = $argv ? $argv : $_SERVER['argv'];
         array_shift($argv);
-        $out                            = array();
+        $out = array();
 
         foreach ($argv as $arg)
         {
